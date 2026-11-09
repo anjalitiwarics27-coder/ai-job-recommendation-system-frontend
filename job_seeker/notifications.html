@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications | HireNova AI</title>
+  <link rel="stylesheet" href="../css/notifications.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/app-overrides.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><h2>HireNova AI</h2></div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="notifications.html" class="active">Notifications</a>
+    <a href="profile.html">Profile</a>
+    <a href="interview_prep.html">Interview Prep</a>
+    <a href="../login.html" onclick="return window.hirenovaLogout ? (window.hirenovaLogout(event), false) : (window.logout && window.logout(), false)">Logout</a>
+  </nav>
+</header>
+
+<section class="notification-hero" style="padding:32px 20px;">
+  <div class="hero-content">
+    <h1>Your Notifications</h1>
+    <p>Job updates, application status, interviews, and AI alerts in one place.</p>
+    <button class="mark-btn" id="markAllBtn" type="button">Mark all read</button>
+  </div>
+</section>
+
+<section class="notification-section" style="padding:0 20px 40px;max-width:960px;margin:0 auto;">
+  <div class="section-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+    <h2>Latest Notifications</h2>
+    <div style="font-size:14px;color:var(--text-500,#64748b);" id="unreadMeta"></div>
+  </div>
+  <div id="notificationList" class="notification-list">
+    <div class="notification-card"><div class="notification-content"><p>Loading notifications…</p></div></div>
+  </div>
+</section>
+
+<script src="../js/layout.js"></script>
+<script src="../js/api.js"></script>
+<script>
+(function () {
+  var list = document.getElementById('notificationList');
+  var meta = document.getElementById('unreadMeta');
+  function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+  function timeAgo(iso){
+    if(!iso) return '';
+    var t = new Date(iso).getTime(); if(isNaN(t)) return '';
+    var s = Math.floor((Date.now()-t)/1000);
+    if(s<60) return 'Just now'; if(s<3600) return Math.floor(s/60)+' min ago';
+    if(s<86400) return Math.floor(s/3600)+' hr ago'; return Math.floor(s/86400)+' day(s) ago';
+  }
+  function render(data){
+    var items = (data && data.notifications) || [];
+    var unread = (data && data.unread) != null ? data.unread : items.filter(function(n){return !n.is_read;}).length;
+    if (meta) meta.textContent = unread ? (unread + ' unread') : 'All caught up';
+    if (!items.length) { list.innerHTML = '<div class="notification-card"><div class="notification-content"><p>No notifications yet. Apply to jobs and complete your profile to get updates.</p></div></div>'; return; }
+    list.innerHTML = items.map(function(n){
+      return '<div class="notification-card '+(n.is_read?'':'unread')+'" style="'+(n.is_read?'opacity:.78;':'')+'">'
+        + '<div class="notification-icon"><i class="fa-solid fa-bell"></i></div>'
+        + '<div class="notification-content" style="flex:1;">'
+        + '<div class="notification-top" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;"><h3>' + esc(n.title) + '</h3><span>' + esc(timeAgo(n.created_at)) + '</span></div>'
+        + '<p>' + esc(n.body||'') + '</p>'
+        + (!n.is_read ? '<div class="notification-actions"><button class="read-btn" data-read="'+esc(n.id)+'">Mark read</button></div>' : '')
+        + '</div></div>';
+    }).join('');
+    list.querySelectorAll('[data-read]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        window.hirenovaApi.markNotificationRead(btn.getAttribute('data-read')).then(load).catch(function(e){ window.toast && window.toast((e&&e.message)||'Failed'); });
+      });
+    });
+  }
+  function load(){
+    if (!window.hirenovaApi || !window.hirenovaApi.hasToken()) {
+      list.innerHTML = '<div class="notification-card"><div class="notification-content"><p>Please <a href="../login.html">sign in</a> to view your notifications.</p></div></div>';
+      if (meta) meta.textContent = '';
+      return;
+    }
+    window.hirenovaApi.notifications().then(render).catch(function(e){
+      list.innerHTML = '<div class="notification-card"><div class="notification-content"><p>' + esc((e&&e.message)||'Could not load notifications.') + '</p></div></div>';
+    });
+  }
+  document.getElementById('markAllBtn').addEventListener('click', function(){
+    if (!window.hirenovaApi || !window.hirenovaApi.hasToken()) return;
+    window.hirenovaApi.markAllNotificationsRead().then(function(){ window.toast && window.toast('All notifications marked as read'); load(); }).catch(function(e){ window.toast && window.toast((e&&e.message)||'Failed'); });
+  });
+  load();
+})();
+</script>
+</body>
+</html>

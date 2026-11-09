@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — HireNova AI</title>
+<meta name="description" content="Sign in to HireNova AI to see your AI-matched jobs, applications and interviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<div class="auth-screen">
+
+  <div class="auth-panel">
+    <a href="index.html" class="brand"><span class="mark">H</span><span>HireNova AI</span></a>
+    <div>
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#bfdbfe;"><span class="dot" style="background:#4ade80"></span>Welcome back</span>
+      <h1>Pick up right where your <em>match</em> left off.</h1>
+      <p class="lead">Sign in to see your latest matches, application status, and roles that synced while you were away.</p>
+      <div class="auth-checklist">
+        <div><i class="fa-solid fa-circle-check ok"></i>Ranked, explainable job matches — not keyword guessing</div>
+        <div><i class="fa-solid fa-circle-check ok"></i>Free for candidates, always</div>
+        <div><i class="fa-solid fa-circle-check ok"></i>Re-synced automatically as new roles open</div>
+      </div>
+    </div>
+    <div class="auth-quote">
+      <p>"HireNova AI surfaced a role I would've scrolled straight past — turned out to be the best fit I've had in years."</p>
+      <div class="who">— Product Designer, matched 2025</div>
+    </div>
+  </div>
+
+  <div class="auth-side">
+    <div class="auth-box">
+      <div class="mobile-brand"><a href="index.html" class="brand"><span class="mark">H</span><span>HireNova AI</span></a></div>
+      <h2>Sign in</h2>
+      <p class="sub">New here? <a href="register.html">Create a free account</a></p>
+
+      <div class="auth-card">
+        <button type="button" class="btn-social" id="googleBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 01-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.87 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 009 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 013.68 9c0-.59.1-1.17.27-1.7V4.97H.95A9 9 0 000 9c0 1.45.35 2.83.95 4.03l3-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.9 11.43 0 9 0A9 9 0 00.95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+          Continue with Google
+        </button>
+
+        <div class="divider"><span>OR SIGN IN WITH EMAIL</span></div>
+
+        <form id="loginForm" novalidate>
+          <div class="field" id="field-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email">
+            <div class="error-msg">Enter a valid email address.</div>
+          </div>
+
+          <div class="field" id="field-password">
+            <label for="password">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" style="padding-right:44px;">
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-500);"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <div class="error-msg">Password must be at least 6 characters.</div>
+          </div>
+
+          <div class="row-between">
+            <label class="checkbox"><input type="checkbox" id="remember"> Remember me</label>
+            <a href="forget_password.html">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Sign in</button>
+        </form>
+
+        <div class="banner banner-success" id="successBanner">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Signed in — redirecting to your dashboard…</span>
+        </div>
+
+        <p style="text-align:center;margin-top:20px;font-size:var(--text-sm);color:var(--text-500);">Don't have an account? <a href="register.html" style="font-weight:700;">Sign up free</a></p>
+      </div>
+
+      <p style="margin-top:18px;text-align:center;"><a href="index.html" style="font-size:var(--text-sm);color:var(--text-500);">← Back to home</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/layout.js"></script>
+<script src="js/api.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('loginForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var successBanner = document.getElementById('successBanner');
+
+  function setInvalid(id, invalid) {
+    document.getElementById('field-' + id).classList.toggle('invalid', invalid);
+    return !invalid;
+  }
+
+  function finishLogin(user) {
+    successBanner.classList.add('show');
+    window.toast('Signed in successfully!');
+    var target = user && user.role === 'employer' ? 'Employer/dashboard.html' : 'job_seeker/dashboard.html';
+    setTimeout(function () { window.location.href = target; }, 900);
+  }
+
+  function fallbackDemo(email) {
+    try {
+      var name = email.split('@')[0] || 'User';
+      localStorage.setItem('user', JSON.stringify({ email: email, name: name, role: 'candidate' }));
+    } catch (e) { }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value.trim();
+    var password = document.getElementById('password').value;
+    var okEmail = setInvalid('email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    var okPassword = setInvalid('password', password.length < 6);
+    if (!okEmail || !okPassword) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in…';
+
+    // Try real backend first; fall back to local demo when backend is offline.
+    var done = function (user, viaBackend) {
+      if (!viaBackend) fallbackDemo(email);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign in';
+      finishLogin(user);
+    };
+    if (window.hirenovaApi) {
+      window.hirenovaApi.login(email, password).then(function (data) {
+        done(data.user, true);
+      }).catch(function (err) {
+        // If backend has a real error (401 = wrong password), show it. If backend is unreachable,
+        // fall back to demo mode so the UI still works offline.
+        if (err && err.status && [400, 401, 403, 404, 422, 409].indexOf(err.status) !== -1) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign in';
+          window.toast(err.message || 'Invalid email or password');
+          return;
+        }
+        done(null, false);
+      });
+    } else {
+      setTimeout(function () { done(null, false); }, 700);
+    }
+  });
+
+  ['email', 'password'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', function () {
+      document.getElementById('field-' + id).classList.remove('invalid');
+      successBanner.classList.remove('show');
+    });
+  });
+
+  var pwInput = document.getElementById('password');
+  var togglePw = document.getElementById('togglePw');
+  togglePw.addEventListener('click', function () {
+    var show = pwInput.type === 'password';
+    pwInput.type = show ? 'text' : 'password';
+    togglePw.innerHTML = '<i class="fa-regular fa-eye' + (show ? '-slash' : '') + '"></i>';
+    togglePw.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+
+  document.getElementById('googleBtn').addEventListener('click', function () {
+    window.toast('Google sign-in is coming soon — use email for now.');
+  });
+})();
+</script>
+<script src="js/live.js"></script>
+</body>
+</html>

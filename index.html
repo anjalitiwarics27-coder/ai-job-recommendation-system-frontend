@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HireNova AI — AI Job Portal & Recommendation System</title>
+<meta name="description" content="HireNova AI matches candidates with the right jobs using AI — ranked, explainable recommendations for job seekers and employers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/landing.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="mark">H</span><span>HireNova AI</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#jobs">Open roles</a>
+      <a href="#employers">For employers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-outline btn-sm">Sign in</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get started free</a>
+      <button class="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="#how">How it works</a>
+    <a href="#jobs">Open roles</a>
+    <a href="#employers">For employers</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Sign in</a>
+    <a href="register.html">Get started free</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>AI matching engine · live</span>
+        <h1>The right job, matched by <em>intelligence</em> — not keywords.</h1>
+        <p class="lead">HireNova AI reads your resume like a signal — skills, experience, intent and trajectory — and ranks the roles that truly fit, with a clear reason for every match.</p>
+        <form class="search-card" id="heroSearch">
+          <input type="text" placeholder="Try “backend engineer, remote, fintech”" aria-label="Search roles" id="heroSearchInput">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <div class="hero-proof">
+          <div><div class="num">92%</div><div class="lbl">avg. match accuracy</div></div>
+          <div><div class="num">4.8k</div><div class="lbl">roles synced weekly</div></div>
+          <div><div class="num">11 sec</div><div class="lbl">to first match</div></div>
+        </div>
+      </div>
+
+      <div class="match-panel" aria-label="Sample match">
+        <div class="match-panel-head"><span class="mono">MATCH.SIGNAL</span><span class="badge badge-success">● Live</span></div>
+        <div class="match-big">
+          <span class="pct" id="matchPct">96%</span>
+          <span class="tag">Product Designer ↔ Figma-first startup</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="matchBar" style="width:96%"></div></div>
+        <div class="match-rows">
+          <div class="match-row"><span>Skills overlap</span><b>18 / 20</b></div>
+          <div class="match-row"><span>Seniority fit</span><b>Exact</b></div>
+          <div class="match-row"><span>Culture signal</span><b>High</b></div>
+        </div>
+        <a href="register.html" class="btn btn-primary btn-block" style="margin-top:20px;">Upload your resume</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <div class="row">
+      <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Resume Analyzer</span>
+      <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> AI Recommendations</span>
+      <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Cover Letter Generator</span>
+      <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Interview Prep</span>
+      <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Career Chatbot</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">How it works</span>
+        <h2>Three steps. No black box.</h2>
+        <p>Every match is explainable — you'll always see <em>why</em> a role was surfaced, not just that it was.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <span class="idx">01</span>
+          <h3>Upload your resume</h3>
+          <p>PDF, DOCX or LinkedIn. HireNova AI parses skills, tools and career trajectory in seconds.</p>
+        </div>
+        <div class="step-card">
+          <span class="idx">02</span>
+          <h3>AI reads the signal</h3>
+          <p>We score you against live openings on skills, seniority, location and preferences — not just keywords.</p>
+        </div>
+        <div class="step-card">
+          <span class="idx">03</span>
+          <h3>Get ranked matches</h3>
+          <p>A shortlist with a match score and the reasoning behind it, so you apply where it counts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section class="section" id="jobs" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Live roles</span>
+        <h2>Top matches for a Product Designer profile</h2>
+        <p>Ranked by fit against a sample candidate signal. Your own list re-tunes the moment you upload a resume.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;" role="group" aria-label="Filter roles">
+        <span class="chip active">All</span>
+        <span class="chip">Remote</span>
+        <span class="chip">Full-time</span>
+        <span class="chip">0–3 yrs</span>
+        <span class="chip">Fintech</span>
+        <span class="chip">Design</span>
+      </div>
+      <div class="job-list" id="jobList"></div>
+      <div style="margin-top:20px;">
+        <a href="register.html" class="btn btn-outline">See all roles <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">The spectrum</span>
+        <h2>Demand across skill bands, this week</h2>
+        <p>A live read of which skill clusters employers are hiring for right now.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="num">18,400+</div><div class="lbl">candidates synced</div></div>
+        <div class="stat-box"><div class="num">2,100+</div><div class="lbl">hiring companies</div></div>
+        <div class="stat-box"><div class="num">6.2 days</div><div class="lbl">median time-to-offer</div></div>
+        <div class="stat-box"><div class="num">4.7 / 5</div><div class="lbl">candidate satisfaction</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPLOYERS / CANDIDATES -->
+  <section class="section" id="employers" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Two sides, one signal</span>
+        <h2>Built for whoever's searching</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="split-grid">
+        <div class="card">
+          <span class="badge badge-info">For candidates</span>
+          <h3 style="margin:14px 0 8px;">Skip the job-board scroll</h3>
+          <p>One resume, matched against every live role — with reasons shown, not hidden. Weekly re-sync as new roles open.</p>
+          <a href="register.html" class="btn btn-primary" style="margin-top:18px;">Upload your resume</a>
+        </div>
+        <div class="card">
+          <span class="badge badge-success">For employers</span>
+          <h3 style="margin:14px 0 8px;">Hire by true fit</h3>
+          <p>Post once and let HireNova AI rank your applicants by fit — not just who applied first. Fill roles in days, not weeks.</p>
+          <a href="register.html" class="btn btn-outline" style="margin-top:18px;">Post a role</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Your next role is already matched. Let's find it.</h2>
+        <p>Free to join. No recruiter spam — just a ranked, explainable match list.</p>
+        <a href="register.html" class="btn btn-lg" style="background:#fff;color:var(--brand-900);">Get started free</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="brand" style="color:#fff;"><span class="mark">H</span><span>HireNova AI</span></a>
+      <p style="margin-top:14px;max-width:32ch;">AI-powered job portal that connects candidates and companies who actually belong together.</p>
+    </div>
+    <div>
+      <h4>Candidates</h4>
+      <a href="register.html">Create free account</a>
+      <a href="job_seeker/jobs.html">Find jobs</a>
+      <a href="job_seeker/ai_recommendation.html">AI recommendations</a>
+    </div>
+    <div>
+      <h4>Employers</h4>
+      <a href="register.html">Post a role</a>
+      <a href="about.html">How matching works</a>
+      <a href="contact.html">Talk to us</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Sign in</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 HireNova AI · AI-Matched Hiring · Made for job seekers & employers</div>
+</footer>
+
+<script src="js/layout.js"></script>
+<script>
+(function () {
+  var jobs = [
+    { role: "Senior Product Designer", company: "Nimbus Finance", tags: ["Remote", "Full-time", "4–6 yrs"], match: 96 },
+    { role: "Product Designer, Growth", company: "Loopwave", tags: ["Hybrid · Bengaluru", "Full-time", "2–4 yrs"], match: 91 },
+    { role: "UX Designer", company: "Kestrel Health", tags: ["Remote", "Contract", "1–3 yrs"], match: 84 },
+    { role: "Design Systems Lead", company: "Arclight Retail", tags: ["Onsite · Pune", "Full-time", "5+ yrs"], match: 77 },
+    { role: "Junior Product Designer", company: "Fernway Labs", tags: ["Remote", "Full-time", "0–2 yrs"], match: 69 }
+  ];
+
+  function badgeColor(pct) { return pct >= 90 ? 'badge-success' : pct >= 75 ? 'badge-warning' : 'badge-gray'; }
+
+  var list = document.getElementById('jobList');
+  jobs.forEach(function (j) {
+    var el = document.createElement('div');
+    el.className = 'job-row';
+    el.innerHTML =
+      '<div><div class="role">' + j.role + '</div>' +
+      '<div class="meta"><span><strong>' + j.company + '</strong></span>' +
+      j.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') +
+      '</div></div>' +
+      '<div class="match-score"><span class="badge ' + badgeColor(j.match) + '">' + j.match + '% match</span>' +
+      '<a href="login.html" class="btn btn-outline btn-sm">View role</a></div>';
+    list.appendChild(el);
+  });
+
+  // Filter chips (visual + toast)
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      window.toast('Showing: ' + chip.textContent.trim());
+    });
+  });
+
+  // Hero search -> register
+  document.getElementById('heroSearch').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = document.getElementById('heroSearchInput').value.trim();
+    if (q) window.toast('Searching for: ' + q);
+    setTimeout(function () { window.location.href = 'register.html'; }, 600);
+  });
+
+  // Hero match ticker
+  var pctEl = document.getElementById('matchPct');
+  var bar = document.getElementById('matchBar');
+  setInterval(function () {
+    var v = 90 + Math.round(Math.random() * 8);
+    pctEl.textContent = v + '%';
+    bar.style.width = v + '%';
+  }, 3200);
+})();
+</script>
+<style>
+  @media (max-width: 860px) { .split-grid { grid-template-columns: 1fr !important; } }
+</style>
+<script src="js/api.js"></script>
+<script src="js/live.js"></script>
+</body>
+</html>
